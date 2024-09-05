@@ -1,6 +1,7 @@
 package com.scalerproject.cartmicroservice.cartservice.Builder;
 
 import com.scalerproject.cartmicroservice.cartservice.DTO.FakeStoreProductDTO;
+import com.scalerproject.cartmicroservice.cartservice.DTO.ProductResponseDTO;
 import com.scalerproject.cartmicroservice.cartservice.Model.Cart;
 import com.scalerproject.cartmicroservice.cartservice.Model.Products;
 import org.springframework.stereotype.Component;
@@ -31,17 +32,19 @@ public class ProductMapper {
         carts.setDate(fakeStoreProductDTO.getDate());
         carts.setProduct(productsList);
 
+//        System.out.print(carts);
+
         return carts;
     }
 
-    public FakeStoreProductDTO mapToFakeStoreProductDTO(Cart cart){
-        FakeStoreProductDTO dto = new FakeStoreProductDTO();
+    public ProductResponseDTO mapToProductResponseDTO(Cart cart){
+        ProductResponseDTO dto = new ProductResponseDTO();
 
         dto.setId(cart.getId());
         dto.setUserId(cart.getUserId());
         dto.setDate(cart.getDate());
-        dto.setProducts(cart.getProduct());
+        dto.setAllProducts(cart.getProduct());
 
-        return null;
+        return dto;
     }
 }
