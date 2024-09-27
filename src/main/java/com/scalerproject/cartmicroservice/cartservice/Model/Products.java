@@ -1,16 +1,12 @@
 package com.scalerproject.cartmicroservice.cartservice.Model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-import java.util.List;
-
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Products {
     private Integer productId;
     private Integer quantity;
-//    private Integer productPrice;
-//    private String productTitle;
 
 }

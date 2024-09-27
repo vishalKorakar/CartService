@@ -13,29 +13,29 @@ import java.util.List;
 @Component
 public class ProductMapper {
 
-    public Cart mapToCart(FakeStoreProductDTO fakeStoreProductDTO){
-        Cart carts = new Cart();
-
-        FakeStoreProductDTO[] dto = new FakeStoreProductDTO[fakeStoreProductDTO.getProducts().size()];
-        List<Products> productsList = new ArrayList<>();
-
-        for (int i = 0; i < fakeStoreProductDTO.getProducts().size(); i++) {
-            Products products = new Products();
-            products.setProductId(fakeStoreProductDTO.getProducts().get(i).getProductId());
-            products.setQuantity(fakeStoreProductDTO.getProducts().get(i).getQuantity());
-
-            productsList.add(products);
-        }
-
-        carts.setId(fakeStoreProductDTO.getId());
-        carts.setUserId(fakeStoreProductDTO.getUserId());
-        carts.setDate(fakeStoreProductDTO.getDate());
-        carts.setProduct(productsList);
-
-//        System.out.print(carts);
-
-        return carts;
-    }
+//    public Cart mapToCart(FakeStoreProductDTO fakeStoreProductDTO){
+//        Cart carts = new Cart();
+//
+//        FakeStoreProductDTO[] dto = new FakeStoreProductDTO[fakeStoreProductDTO.getProducts().size()];
+//        List<Products> productsList = new ArrayList<>();
+//
+//        for (int i = 0; i < fakeStoreProductDTO.getProducts().size(); i++) {
+//            Products products = new Products();
+//            products.setProductId(fakeStoreProductDTO.getProducts().get(i).getProductId());
+//            products.setQuantity(fakeStoreProductDTO.getProducts().get(i).getQuantity());
+//
+//            productsList.add(products);
+//        }
+//
+//        carts.setId(fakeStoreProductDTO.getId());
+//        carts.setUserId(fakeStoreProductDTO.getUserId());
+//        carts.setDate(fakeStoreProductDTO.getDate());
+//        carts.setProduct(productsList);
+//
+////        System.out.print(carts);
+//
+//        return carts;
+//    }
 
     public ProductResponseDTO mapToProductResponseDTO(Cart cart){
         ProductResponseDTO dto = new ProductResponseDTO();
