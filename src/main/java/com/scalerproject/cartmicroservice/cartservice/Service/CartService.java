@@ -15,5 +15,5 @@ public interface CartService {
     List<Cart> getCartForUserId(Integer userId);
     Cart addNewCart(Integer userid, Date date, List<Products> products);
     Cart updateCart(Integer userid, Date date, List<Products> products, Integer cartid);
-//    Cart deleteCart(Integer id);
+    Cart deleteCart();
 }

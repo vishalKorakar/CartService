@@ -14,5 +14,4 @@ public interface CartRepo extends MongoRepository<Cart, Integer>{
     Cart save(Cart cart);
     List<Cart> findAllBy();
     List<Cart> findByUserId(Integer userId);
-
 }

@@ -119,18 +119,18 @@ public class CartController {
         return mapper.mapToProductResponseDTO(update);
     }
 
-//    @DeleteMapping("/carts/{cartid}")
-//    public ProductResponseDTO deleteCart(@PathVariable("cartid") Integer cartid){
-//
-//        if (cartid == null){
-//            return null;
-//        }
-//
-//        Cart deleteCart = fksvc.deleteCart(cartid);
-//
-//        if (deleteCart == null){
-//            return null;
-//        }
-//        return mapper.mapToProductResponseDTO(deleteCart);
-//    }
+    @DeleteMapping("/carts/{cartid}")
+    public ProductResponseDTO deleteCart(@PathVariable("cartid") Integer cartid){
+
+        if (cartid == null){
+            return null;
+        }
+
+        Cart deleteCart = crtsvc.deleteCart();
+
+        if (deleteCart == null){
+            return null;
+        }
+        return mapper.mapToProductResponseDTO(deleteCart);
+    }
 }

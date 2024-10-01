@@ -15,4 +15,5 @@ public class ProductResponseDTO {
     private Integer userId;
     private Date date;
     private List<Products> AllProducts;
+    private boolean status;
 }

@@ -25,4 +25,5 @@ public class Cart {
     private Integer userId;
     private Date date;
     private List<Products> product;
+    private boolean isDeleted;
 }
