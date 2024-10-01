@@ -10,10 +10,10 @@ import java.util.List;
 
 public interface CartService {
 
-//    Cart getSingleCart(Integer id);
-//    List<Cart> getAllCart();
-//    List<Cart> getCartForUserId(Integer userId);
+    Cart getSingleCart(Integer id);
+    List<Cart> getAllCart();
+    List<Cart> getCartForUserId(Integer userId);
     Cart addNewCart(Integer userid, Date date, List<Products> products);
-//    Cart updateCart(Integer userid, Date date, List<Products> products, Integer cartid);
+    Cart updateCart(Integer userid, Date date, List<Products> products, Integer cartid);
 //    Cart deleteCart(Integer id);
 }

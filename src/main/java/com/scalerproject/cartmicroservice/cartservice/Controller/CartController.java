@@ -28,69 +28,67 @@ public class CartController {
         this.sequenceGenerator = sequenceGenerator;
     }
 
-//    @GetMapping("/carts/{id}")
-//    public ProductResponseDTO getSingleCart(@PathVariable("id") Integer id){
-//
-//        // Validation
-//        if (id == null){
-//            System.out.println("id is null");
-//        }
-//
-//        // call the fakestore service layer.
-//        Cart carts = fksvc.getSingleCart(id);
-//
-//        // Validation
-//        if (id == null){
-//            System.out.println("id is not found");
-//            return null;
-//        }
-//
-//        return mapper.mapToProductResponseDTO(carts);
-//
-//    }
+    @GetMapping("/carts/{id}")
+    public ProductResponseDTO getSingleCart(@PathVariable("id") Integer id) throws Exception {
 
-//    @GetMapping("/carts")
-//    public List<ProductResponseDTO> getAllCart(){
-//
-//        // call the fakestore service layer.
-//        List<Cart> carts = fksvc.getAllCart();
-//
-//        List<ProductResponseDTO> productResponseDTOs = new ArrayList<>();
-//
-//        // Validation
-//        if (carts == null){
-//            System.out.println("id is not found");
-//            return null;
-//        }
-//
-//        for (Cart c : carts) {
-//            productResponseDTOs.add(mapper.mapToProductResponseDTO(c));
-//        }
-//
-//        return productResponseDTOs;
-//    }
-//
-//    @GetMapping("carts/user/{userid}")
-//    public List<ProductResponseDTO> getCartForUserId(@PathVariable("userid") Integer userid){
-//
-//        if (userid == null){
-//            // Throws Error
-//        }
-//
-//        List<Cart> userCarts = fksvc.getCartForUserId(userid);
-//
-//        List<ProductResponseDTO> dto = new ArrayList<>();
-//
-//        if (userCarts == null){
-//            return null;
-//        }
-//
-//        for (Cart c : userCarts) {
-//            dto.add(mapper.mapToProductResponseDTO(c));
-//        }
-//
-//        return dto;
-//    }
+        // Validation
+        if (id == null){
+            throw new Exception("please enter a valid id");
+        }
+
+        // call our own database layer.
+        Cart carts = crtsvc.getSingleCart(id);
+
+        // Validation
+        if (id == null){
+            throw new Exception("id is not found");
+        }
+
+        return mapper.mapToProductResponseDTO(carts);
+
+    }
+
+    @GetMapping("/carts")
+    public List<ProductResponseDTO> getAllCart() throws Exception {
+
+        // call the cart service layer.
+        List<Cart> carts = crtsvc.getAllCart();
+
+        List<ProductResponseDTO> productResponseDTOs = new ArrayList<>();
+
+        // Validation
+        if (carts == null){
+            throw new Exception("carts does not exist.");
+        }
+
+        for (Cart c : carts) {
+            productResponseDTOs.add(mapper.mapToProductResponseDTO(c));
+        }
+
+        return productResponseDTOs;
+    }
+
+    @GetMapping("carts/user/{userid}")
+    public List<ProductResponseDTO> getCartForUserId(@PathVariable("userid") Integer userid) throws Exception {
+
+        if (userid == null){
+            // Throws Error
+        }
+
+        List<Cart> userCarts = crtsvc.getCartForUserId(userid);
+
+        List<ProductResponseDTO> dto = new ArrayList<>();
+
+        if (userCarts == null){
+            throw new Exception("Carts with the provided user id does not exist");
+        }
+
+        for (Cart c : userCarts) {
+            dto.add(mapper.mapToProductResponseDTO(c));
+        }
+
+        return dto;
+    }
 
     @PostMapping("/carts")
     public ProductResponseDTO addNewCart(@RequestBody ProductRequestDTO dto){
@@ -105,22 +103,22 @@ public class CartController {
         return mapper.mapToProductResponseDTO(addProduct);
     }
 
-//    @PostMapping("/carts/{cartid}")
-//    public ProductResponseDTO updateCart(@RequestBody FakestoreProductRequestDTO dto, @PathVariable("cartid") Integer cartid){
-//
-//        if (dto == null){
-//            return null;
-//        }
-//
-//        Cart update = fksvc.updateCart(dto.getUserId(), dto.getDate(), dto.getProductsList(), cartid);
-//
-//        if (update == null){
-//            return null;
-//        }
-//
-//        return mapper.mapToProductResponseDTO(update);
-//    }
-//
+    @PutMapping("/carts/{cartid}")
+    public ProductResponseDTO updateCart(@RequestBody ProductRequestDTO dto, @PathVariable("cartid") Integer cartid){
+
+        if (dto == null){
+            return null;
+        }
+
+        Cart update = crtsvc.updateCart(dto.getUserId(), dto.getDate(), dto.getProducts(), cartid);
+
+        if (update == null){
+            return null;
+        }
+
+        return mapper.mapToProductResponseDTO(update);
+    }
+
 //    @DeleteMapping("/carts/{cartid}")
 //    public ProductResponseDTO deleteCart(@PathVariable("cartid") Integer cartid){
 //
