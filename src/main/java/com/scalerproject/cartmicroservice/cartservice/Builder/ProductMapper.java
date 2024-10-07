@@ -44,6 +44,7 @@ public class ProductMapper {
         dto.setUserId(cart.getUserId());
         dto.setDate(cart.getDate());
         dto.setAllProducts(cart.getProduct());
+        dto.setStatus(cart.getIsDeleted());
 
         return dto;
     }

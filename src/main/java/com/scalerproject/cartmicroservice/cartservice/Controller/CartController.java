@@ -103,34 +103,30 @@ public class CartController {
         return mapper.mapToProductResponseDTO(addProduct);
     }
 
-    @PutMapping("/carts/{cartid}")
-    public ProductResponseDTO updateCart(@RequestBody ProductRequestDTO dto, @PathVariable("cartid") Integer cartid){
-
-        if (dto == null){
-            return null;
-        }
-
-        Cart update = crtsvc.updateCart(dto.getUserId(), dto.getDate(), dto.getProducts(), cartid);
-
-        if (update == null){
-            return null;
-        }
-
-        return mapper.mapToProductResponseDTO(update);
-    }
+//    @PutMapping("/carts/{cartid}")
+//    public ProductResponseDTO updateCart(@RequestBody ProductRequestDTO dto, @PathVariable("cartid") Integer cartid){
+//
+//        if (dto == null){
+//            return null;
+//        }
+//
+//        Cart update = crtsvc.updateCart(dto.getUserId(), dto.getDate(), dto.getProducts(), cartid);
+//
+//        if (update == null){
+//            return null;
+//        }
+//
+//        return mapper.mapToProductResponseDTO(update);
+//    }
 
     @DeleteMapping("/carts/{cartid}")
-    public ProductResponseDTO deleteCart(@PathVariable("cartid") Integer cartid){
+    public ProductResponseDTO deleteCart(@PathVariable("cartid") Integer cartid) throws Exception {
 
         if (cartid == null){
-            return null;
+            throw new Exception("the cart id does not exist");
         }
 
-        Cart deleteCart = crtsvc.deleteCart();
-
-        if (deleteCart == null){
-            return null;
-        }
-        return mapper.mapToProductResponseDTO(deleteCart);
+        Cart deletedCart = crtsvc.deleteCart(cartid);
+        return mapper.mapToProductResponseDTO(deletedCart);
     }
 }

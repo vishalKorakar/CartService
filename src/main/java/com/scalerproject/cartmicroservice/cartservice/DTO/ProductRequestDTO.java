@@ -1,5 +1,6 @@
 package com.scalerproject.cartmicroservice.cartservice.DTO;
 
+import com.scalerproject.cartmicroservice.cartservice.Model.ProductQuantity;
 import com.scalerproject.cartmicroservice.cartservice.Model.Products;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +14,7 @@ import java.util.List;
 public class ProductRequestDTO {
     private Integer userId;
     private Date date;
-    private List<Products> products;
+    private List<ProductQuantity> products;
 }
 
 
